@@ -1,0 +1,117 @@
+@import '../../app.component.scss';
+
+.sidebar-container {
+  font-family: $font_4;
+  .logo-container {
+    padding: 0 24px;
+    margin-bottom: 36px;
+    .logo-img {
+      width: 150px;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 0;
+      &:hover {
+        background-color: $primary_background_color;
+      }
+    }
+  }
+
+  .link-list-container {
+    margin-bottom: 12px;
+    .link-list {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      .link-item {
+        padding: 12px 24px;
+        font-size: 12px;
+        font-weight: 400;
+        color: $text_color_light;
+        cursor: pointer;
+        outline: none;
+        letter-spacing: 0.5px;
+        &:hover {
+          background-color: $primary_background_color;
+        }
+      }
+      .active {
+        -webkit-box-shadow: inset 3px 0px 0px 0px $primary_color;
+        -moz-box-shadow: inset 3px 0px 0px 0px $primary_color;
+        box-shadow: inset 3px 0px 0px 0px $primary_color;
+        color: $text_color_dark;
+      }
+    }
+  }
+
+  .random-content-container {
+    margin-bottom: 36px;
+    padding: 0 24px;
+    .content-container {
+      background-color: $primary_background_color;
+      border-radius: 2px;
+      padding: 16px;
+      &:first-child {
+        margin-bottom: 12px;
+      }
+
+      .header-container {
+        margin-bottom: 12px;
+        .header {
+          font-size: 15px;
+          font-weight: 300;
+          margin: 0;
+          color: $text_color_dark;
+          letter-spacing: 0.5px;
+        }
+
+        .meta-data {
+          font-size: 11px;
+          margin: 0;
+          color: darken($text_color_light, 5%);
+          font-weight: 300;
+          letter-spacing: 0.5px;
+        }
+      }
+
+      .description-container {
+        .description {
+          font-size: 11px;
+          margin: 0;
+          color: darken($text_color_light, 5%);
+          font-weight: 300;
+          line-height: 1.7;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+
+  .settings-container {
+    .grid-container {
+      display: grid;
+      grid-column-gap: 12px;
+      padding: 0 24px;
+    }
+
+    .grid-system-1 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .action-btn {
+      width: 100%;
+      font-size: 18px;
+      color: darken($primary_background_color, 15%);
+      background-color: $primary_background_color;
+      border: none;
+      outline: none;
+      padding: 16px 24px;
+      cursor: pointer;
+      border-radius: 2px;
+
+      &:hover {
+        background-color: darken($primary_background_color, 2%);
+      }
+    }
+  }
+
+}

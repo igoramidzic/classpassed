@@ -1,0 +1,46 @@
+<div class="sidebar-container">
+  <div class="logo-container">
+    <img [routerLink]="['']" class="logo-img" src="assets/img/logo2.png" alt="Reddit">
+  </div>
+
+  <div class="link-list-container">
+    <ul class="link-list">
+      <li [routerLink]="['']" [routerLinkActive]="['active']" class="link-item">HOME</li>
+      <li [routerLink]="['1']" [routerLinkActive]="['active']" class="link-item">DISCUSSIONS</li>
+      <li [routerLink]="['2']" [routerLinkActive]="['active']" class="link-item">COMMENTS</li>
+      <li [routerLink]="['2']" [routerLinkActive]="['active']" class="link-item">LIVE CHAT</li>
+    </ul>
+  </div>
+
+  <div class="random-content-container">
+    <div class="content-container">
+      <div class="header-container">
+        <h5 class="header">Header</h5>
+        <p class="meta-data">Meta data</p>
+      </div>
+      <div class="description-container">
+        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+    </div>
+    <div class="content-container">
+      <div class="header-container">
+        <h5 class="header">Header</h5>
+        <p class="meta-data">Meta data</p>
+      </div>
+      <div class="description-container">
+        <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-container">
+    <div class="grid-container grid-system-1">
+      <div class="left-container">
+        <button class="action-btn"><i class="fas fa-cog"></i></button>
+      </div>
+      <div class="right-container">
+        <button class="action-btn"><i class="fas fa-users"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
