@@ -1,4 +1,5 @@
 import {Component, ViewChild, HostListener, ElementRef, OnInit} from '@angular/core';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +8,17 @@ import {Component, ViewChild, HostListener, ElementRef, OnInit} from '@angular/c
 })
 export class AppComponent implements OnInit {
   @ViewChild('mainAppContainer') mainAppContainer:ElementRef;
-  @ViewChild('sidenav') sidenav:ElementRef;
+  @ViewChild('sidenav') sidenav:MatSidenav;
   mode = 'side';
   divWidth = 0;
 
   @HostListener('window:resize') onResize() {
+    this.divWidth = this.mainAppContainer.nativeElement.clientWidth;
     this.checkSidenavState(this.mainAppContainer.nativeElement.clientWidth);
   }
 
   ngOnInit () {
+    this.divWidth = this.mainAppContainer.nativeElement.clientWidth;
     this.checkSidenavState(this.mainAppContainer.nativeElement.clientWidth);
   }
 

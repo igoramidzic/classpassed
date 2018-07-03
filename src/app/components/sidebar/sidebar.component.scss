@@ -3,13 +3,13 @@
 .sidebar-container {
   font-family: $font_4;
   .logo-container {
-    padding: 0 24px;
+    text-align: center;
     margin-bottom: 36px;
     .logo-img {
       width: 150px;
       outline: none;
       cursor: pointer;
-      padding: 10px 0;
+      padding: 10px;
       &:hover {
         background-color: $primary_background_color;
       }
