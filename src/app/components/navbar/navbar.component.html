@@ -9,15 +9,20 @@
                 <i class="fa fa-bars"></i>
             </button>
             <h3 class="page-title">Home</h3>
-            <button class="date-dropdown-btn" mat-button [matMenuTriggerFor]="dateDropdown">
+
+            <div class="dropdown">
+              <button mat-button class="date-dropdown-btn" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               PAST 24 HOURS <i class="fas fa-caret-down"></i>
-            </button>
-            <mat-menu yPosition="below" xPosition="after" [overlapTrigger]="false" #dateDropdown="matMenu">
-              <button mat-menu-item>Past hour</button>
-              <button mat-menu-item>Past 24 hours</button>
-              <button mat-menu-item>Past day</button>
-              <button mat-menu-item>Past week</button>
-            </mat-menu>
+              </button>
+
+              <div class="dropdown-menu date-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item">Past hour</a>
+                <a class="dropdown-item">Past 24 hours</a>
+                <a class="dropdown-item">Past day</a>
+                <a class="dropdown-item">Past week</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -25,7 +30,7 @@
       <div class="nav-content right-container">
         <div class="center-container">
           <div class="center-left-content">
-            <div class="notifications-container" *ngIf="loggedIn">
+            <div class="notifications-container" *ngIf="userService.user.value">
               <button class="notifications-btn" mat-button><i class="fas fa-envelope"></i></button>
             </div>
 
@@ -37,21 +42,36 @@
 
             <div class="user-container">
 
-              <button [routerLink]="['', 'login']" mat-button class="login-btn action-btn">Log in</button>
-              <button [routerLink]="['', 'register']" mat-button class="signup-btn action-btn">Sign up</button>
+              <div class="btn-wrapper" *ngIf="!userService.user.value">
+                <button [routerLink]="['', 'login']" mat-button class="login-btn action-btn">Log in</button>
+                <button [routerLink]="['', 'register']" mat-button class="signup-btn action-btn">Sign up</button>
+              </div>
 
-              <button [routerLink]="['', 'user', 'Igor']" mat-button class="user-btn" *ngIf="loggedIn">
+              <!--<button (click)="authService.logout()" mat-button class="user-btn" *ngIf="authService.user.value">
                 <div class="center-container">
                   <div class="center-left-content">
                     <div class="img-container" style="background-image: url('assets/img/placeholder-profile-picture.jpg');">
                     </div>
 
                     <div class="name-container">
-                      Igor
+                      {{ authService.user.value.email }}
                     </div>
                   </div>
                 </div>
-              </button>
+              </button>-->
+
+              <div class="dropdown" *ngIf="userService.user.value">
+                <button mat-button class="user-btn" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ userService.user.value.username }}
+                  {{ userService.user.value.email }}
+                </button>
+
+                <div class="dropdown-menu user-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="authService.logout()">Logout</a>
+                </div>
+
+              </div>
 
             </div>
           </div>

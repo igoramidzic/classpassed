@@ -17,6 +17,7 @@
       margin-right: 24px;
       font-size: 20px;
       color: $text_color_light;
+      outline: none;
       .fa-bars {
         position: relative;
         top: -1px;
@@ -37,12 +38,22 @@
       font-weight: 400;
       font-size: 12px;
       letter-spacing: 0.5px;
+      outline: none;
 
       .fa-caret-down {
         position: relative;
         top: -2px;
         font-size: 16px;
         margin-left: 6px;
+      }
+    }
+
+    .date-dropdown-menu {
+      .dropdown-item {
+        color: $text_color_dark;
+        font-size: 16px;
+        font-weight: 300;
+        cursor: pointer;
       }
     }
   }
@@ -56,7 +67,7 @@
 
       .notifications-btn {
         color: $text_color_light;
-
+        outline: none;
       }
     }
 
@@ -109,17 +120,37 @@
         font-size: 14px;
         font-weight: 300;
         color: $text_color_dark;
+        outline: none;
       }
       .login-btn {
         background-color: transparent;
         color: $primary_color;
         border: 1px solid $primary_color;
         margin-right: 12px;
+        outline: none;
       }
       .signup-btn {
         background-color: $primary_color;
         color: #ffffff;
         border: 1px solid $primary_color;
+        outline: none;
+      }
+      .user-btn {
+        font-size: 14px;
+        font-weight: 300;
+        outline: none;
+        color: $text_color_dark;
+      }
+      .user-dropdown-menu {
+        .dropdown-item {
+          color: $text_color_dark;
+          font-size: 16px;
+          font-weight: 300;
+          cursor: pointer;
+          &:active {
+            background-color: $primary_background_color;
+          }
+        }
       }
 
       .img-container {
@@ -130,12 +161,6 @@
         background-size: cover;
         position: relative;
         margin-right: 8px;
-      }
-
-      .name-container {
-        font-size: 14px;
-        font-weight: 300;
-        color: $text_color_dark;
       }
     }
   }

@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="settings-container">
+  <div class="settings-container" *ngIf="userService.user.value">
     <div class="grid-container grid-system-1">
       <div class="left-container">
         <button [routerLink]="['', 'settings']" class="action-btn"><i class="fas fa-cog"></i></button>

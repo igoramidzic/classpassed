@@ -9,6 +9,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {NgPipesModule} from 'ngx-pipes';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -52,7 +54,9 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
-    NgPipesModule
+    NgPipesModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

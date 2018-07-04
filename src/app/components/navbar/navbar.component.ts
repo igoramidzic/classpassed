@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   @Output() onToggleSidebar = new EventEmitter<boolean>();
-  title: String;
-  public loggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, public userService: UserService,
+              public authService: AuthService) { }
 
   ngOnInit() {
   }
