@@ -1,14 +1,14 @@
 <div class="sidebar-container">
   <div class="logo-container">
-    <img [routerLink]="['']" class="logo-img" src="assets/img/logo2.png" alt="Reddit">
+    <img [routerLink]="['']" class="logo-img" src="assets/img/logo-header.png" alt="classpassed">
   </div>
 
   <div class="link-list-container">
     <ul class="link-list">
-      <li [routerLink]="['']" [routerLinkActive]="['active']" class="link-item">HOME</li>
-      <li [routerLink]="['1']" [routerLinkActive]="['active']" class="link-item">DISCUSSIONS</li>
-      <li [routerLink]="['2']" [routerLinkActive]="['active']" class="link-item">COMMENTS</li>
-      <li [routerLink]="['2']" [routerLinkActive]="['active']" class="link-item">LIVE CHAT</li>
+      <li [routerLink]="['']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="link-item">HOME</li>
+      <li [routerLink]="['', 'c', 'discussions']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="link-item">DISCUSSIONS</li>
+      <li [routerLink]="['', 'c', 'comments']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="link-item">COMMENTS</li>
+      <li [routerLink]="['', 'c', 'chat']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="link-item">LIVE CHAT</li>
     </ul>
   </div>
 
@@ -36,7 +36,7 @@
   <div class="settings-container">
     <div class="grid-container grid-system-1">
       <div class="left-container">
-        <button class="action-btn"><i class="fas fa-cog"></i></button>
+        <button [routerLink]="['', 'settings']" class="action-btn"><i class="fas fa-cog"></i></button>
       </div>
       <div class="right-container">
         <button class="action-btn"><i class="fas fa-users"></i></button>

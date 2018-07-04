@@ -1,15 +1,1 @@
-<div #mainAppContainer class="main-app-container">
-  <ng-container>
-    <mat-sidenav-container class="sidenav-page-content-container">
-
-      <mat-sidenav #sidenav [mode]="mode" class="sidenav">
-        <app-sidebar></app-sidebar>
-      </mat-sidenav>
-
-      <div class="main-content-container">
-        <p><button mat-button *ngIf="mode == 'push'" (click)="sidenav.toggle()">Toggle</button></p>
-      </div>
-
-    </mat-sidenav-container>
-  </ng-container>
-</div>
+<router-outlet></router-outlet>

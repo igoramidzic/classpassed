@@ -2,9 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700|Rubik:300,400,500,700|Varela+Round');
 
 $primary_color: #fb461e;
-$primary_color_light: #473659;
 $primary_background_color: #f7f7f7;
-$text_color_light: #c8c8c8;
+$text_color_light: #bdbdbd;
 $text_color_dark: #3c3c3c;
 $success_color: #25C646;
 $danger_color: #E23D3D;
@@ -14,27 +13,6 @@ $primary_font: 'Roboto', sans-serif;
 $sans_font: 'Rubik', sans-serif;
 $font_3: 'Varela Round', sans-serif;
 $font_4: 'Nunito Sans', sans-serif;
-
-.sidenav-page-content-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  .sidenav {
-    width: 240px;
-    background-color: #ffffff;
-    height: 100vh;
-    -webkit-box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.75);
-    box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.1);
-    padding: 24px 0;
-  }
-}
-
-.main-content-container {
-  padding: 24px;
-}
 
 .center-container {
   display: -ms-flexbox;

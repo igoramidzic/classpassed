@@ -1,0 +1,48 @@
+@import '../../app.component.scss';
+
+.main-content-container {
+  height: 100vh;
+}
+
+.main-content-scroll-container {
+  overflow-y: scroll;
+}
+
+.sidenav-page-content-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $primary_background_color;
+  .sidenav {
+    width: 240px;
+    background-color: #ffffff;
+    height: 100vh;
+    -webkit-box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.75);
+    box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.1);
+    padding: 24px 0;
+  }
+}
+
+@media only screen and (min-width: 981px) {
+  .main-content-container {
+    padding: 24px 24px 0;
+  }
+  .main-content-scroll-container {
+    padding: 0 24px 48px;
+    height: calc(100% - 84px);
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .main-content-container {
+    padding: 12px 12px 0;
+  }
+  .main-content-scroll-container {
+    padding: 0 12px 24px;
+    height: calc(100% - 72px);
+  }
+}
+

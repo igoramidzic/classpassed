@@ -1,0 +1,198 @@
+@import '../../app.component.scss';
+
+.navbar-container {
+  font-family: $font_4;
+
+  .nav-content {
+
+  }
+
+  .left-container {
+
+    .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+      min-width: 0;
+    }
+
+    .menu-btn {
+      margin-right: 24px;
+      font-size: 20px;
+      color: $text_color_light;
+      .fa-bars {
+        position: relative;
+        top: -1px;
+      }
+    }
+
+    .page-title {
+      font-size: 18px;
+      font-weight: 400;
+      margin: 0 36px 0 0;
+      color: $text_color_dark;
+    }
+
+    .date-dropdown-btn {
+      background-color: transparent;
+      border: none;
+      color: $primary_color;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+
+      .fa-caret-down {
+        position: relative;
+        top: -2px;
+        font-size: 16px;
+        margin-left: 6px;
+      }
+    }
+  }
+
+  .right-container {
+    .notifications-container {
+      margin-right: 24px;
+      .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+        min-width: 0;
+      }
+
+      .notifications-btn {
+        color: $text_color_light;
+
+      }
+    }
+
+    .search-container {
+      margin-right: 30px;
+      input {
+        transition: .25s;
+        padding:8px 15px 8px 35px;
+        border-radius: 100px;
+        font-weight: 300;
+        -webkit-box-shadow: 0px 4px 20px 0px darken($primary_background_color, 10%);
+        -moz-box-shadow: 0px 4px 20px 0px darken($primary_background_color, 10%);
+        box-shadow: 0px 4px 20px 0px darken($primary_background_color, 10%);
+        font-size: 12px;
+        color: $text_color_dark;
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          color: $text_color_light;
+        }
+        &::-moz-placeholder { /* Firefox 19+ */
+          color: $text_color_light;
+        }
+        &:-ms-input-placeholder { /* IE 10+ */
+          color: $text_color_light;
+        }
+        &:-moz-placeholder { /* Firefox 18- */
+          color: $text_color_light;
+        }
+        outline: none;
+        border: none;
+        background-image: url(/assets/img/search-icon.png);
+        background-repeat:no-repeat;
+        -webkit-background-size: 20px 20px;
+        -moz-background-size: 20px 20px;
+        -o-background-size: 20px 20px;
+        background-size: 20px 20px;
+        background-position: 8px 6px;
+        background-color: #ffffff;
+      }
+    }
+
+    .user-container {
+
+      .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+        min-width: 0;
+        padding: 8px 10px;
+        line-height: 1;
+      }
+
+      .action-btn {
+        font-size: 14px;
+        font-weight: 300;
+        color: $text_color_dark;
+      }
+      .login-btn {
+        background-color: transparent;
+        color: $primary_color;
+        border: 1px solid $primary_color;
+        margin-right: 12px;
+      }
+      .signup-btn {
+        background-color: $primary_color;
+        color: #ffffff;
+        border: 1px solid $primary_color;
+      }
+
+      .img-container {
+        height: 32px;
+        width: 32px;
+        border-radius: 100px;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        margin-right: 8px;
+      }
+
+      .name-container {
+        font-size: 14px;
+        font-weight: 300;
+        color: $text_color_dark;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1101px) {
+  .search-container {
+    input {
+      width: 210px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .search-container {
+    input {
+      width: 170px;
+    }
+  }
+}
+
+
+@media only screen and (min-width : 981px) {
+  .left-container {
+    .menu-btn {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 810px) {
+  .notifications-container {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 740px) {
+  .date-dropdown-btn {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .search-container {
+    display: none;
+  }
+}
+
+// Padding
+@media only screen and (min-width: 981px) {
+  .navbar-container {
+    padding: 24px;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .navbar-container {
+    padding: 12px 12px 24px;
+  }
+}

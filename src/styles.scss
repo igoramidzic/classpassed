@@ -2,8 +2,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import 'app/app.component.scss';
 
-body {
+body, html {
   margin: 0;
-  box-sizing: border-box;
   background-color: $primary_background_color;
+}
+
+* {
+  box-sizing: border-box;
 }
