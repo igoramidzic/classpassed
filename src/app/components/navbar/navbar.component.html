@@ -68,6 +68,8 @@
                 </button>
 
                 <div class="dropdown-menu user-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item"
+                  [routerLink]="['', 'user', userService.user.value.username]">Profile</a>
                   <a class="dropdown-item" (click)="authService.logout()">Logout</a>
                 </div>
 

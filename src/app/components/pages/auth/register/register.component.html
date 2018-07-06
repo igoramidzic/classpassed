@@ -1,18 +1,48 @@
-<form class="modal-form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
-  <input
-    type="text"
-    placeholder="Username"
-    formControlName="username">
-  <input
-    type="email"
-    placeholder="Email"
-    formControlName="email">
-  <input
-    type="password"
-    placeholder="Password"
-    formControlName="password">
-  <button
-    class="auth-action-btn"
-    mat-button type="submit"
-    [disabled]="false">Sign up</button>
-</form>
+<div class="auth-system-content-container">
+  <form class="auth-form cool-form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <div class="form-control-container">
+      <div class="form-input-container">
+        <label for="username" class="form-label">Username</label>
+        <div class="error-container" *ngIf="registerForm.controls['username'].invalid">
+          {{ registerForm.controls['username'].errors.error}}
+        </div>
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Your unique identifier"
+          formControlName="username">
+      </div>
+      <div class="form-input-container">
+        <label for="email" class="form-label">Email</label>
+        <div class="error-container" *ngIf="registerForm.controls['email'].invalid">
+          {{ registerForm.controls['email'].errors.error}}
+        </div>
+        <input
+          class="form-input"
+          type="email"
+          placeholder="Your school email"
+          formControlName="email">
+      </div>
+      <div class="form-input-container last-child-component">
+        <label for="email" class="form-label">Password</label>
+        <div class="error-container" *ngIf="registerForm.controls['password'].invalid">
+          {{ registerForm.controls['password'].errors.error}}
+        </div>
+        <input
+          class="form-input"
+          type="password"
+          placeholder="Strong password"
+          formControlName="password">
+      </div>
+    </div>
+    <button
+      class="action-btn"
+      mat-button type="submit">Sign up</button>
+    <app-loading *ngIf=submitting></app-loading>
+  </form>
+
+  <div class="other-auth-option-container">
+    Already a member?
+    <a [routerLink]="['', 'login']" class="action-link">Log in</a>
+  </div>
+</div>

@@ -26,6 +26,7 @@ import { LoginComponent } from './components/pages/auth/login/login.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
+import { LoadingComponent } from './components/spinners/loading/loading.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
     LoginComponent,
     RegisterComponent,
     MainLayoutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

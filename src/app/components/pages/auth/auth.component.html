@@ -1,4 +1,17 @@
 <div class="auth-container">
-  <app-login *ngIf="authType == 'login'"></app-login>
-  <app-register *ngIf="authType == 'register' "></app-register>
+  <div class="auth-system-container">
+    <div class="logo-link-container">
+      <a [routerLink]="['']" class="logo-link">
+        <img class="img" src="assets/img/logo-header.png" alt="classpassed">
+      </a>
+    </div>
+
+    <app-login *ngIf="authType == 'login'"></app-login>
+    <app-register *ngIf="authType == 'register' "></app-register>
+  </div>
+
+  <div class="background-container">
+    <div class="background-dimmer"></div>
+  </div>
+
 </div>

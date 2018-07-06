@@ -1,12 +1,35 @@
-<form class="modal-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-  <input
-    type="email"
-    placeholder="Email"
-    formControlName="email">
-  <input
-    type="password"
-    placeholder="Password"
-    formControlName="password">
-  <button
-    mat-button type="submit">Log in</button>
-</form>
+<div class="auth-system-content-container">
+  <form class="auth-form cool-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div class="error-container" *ngIf="hasError">Incorrect email or password</div>
+    <div class="form-control-container">
+      <div class="form-input-container">
+        <label for="email" class="form-label">Email</label>
+        <input
+          class="form-input"
+          type="email"
+          formControlName="email">
+      </div>
+      <div class="form-input-container last-child-component">
+        <label for="email" class="form-label">Password</label>
+        <input
+          class="form-input"
+          type="password"
+          formControlName="password">
+      </div>
+    </div>
+    <button
+      class="action-btn"
+      [disabled]="submitting"
+      mat-button type="submit">Log in</button>
+    <app-loading *ngIf=submitting></app-loading>
+
+    <div class="forgot-password-container">
+      <a [routerLink]="['']" class="action-link">FORGOT PASSWORD</a>
+    </div>
+  </form>
+
+  <div class="other-auth-option-container">
+    New to Classpassed?
+    <a [routerLink]="['', 'register']" class="action-link">Sign up</a>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+@import '../../../app.component.scss';
+
+.auth-container {
+
+  height: 100vh;
+
+  .auth-system-container {
+    display: inline-block;
+    max-width: 400px;
+    height: 100%;
+    width: 100%;
+    vertical-align: top;
+
+    .logo-link-container {
+      margin-bottom: 48px;
+      .img {
+        max-width: 170px;
+      }
+    }
+  }
+
+  .background-container {
+    display: inline-block;
+    width: calc(100% - 400px);
+    height: 100%;
+    background-image: url("/assets/img/student-background.jpg");
+    background-position: center;
+    background-size: cover;
+    vertical-align: top;
+    position: relative;
+
+    .background-dimmer {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.4);
+    }
+  }
+}
+
+.auth-system-content-container {
+
+  .auth-form {
+
+    margin-bottom: 24px;
+
+    .form-control-container {
+      margin-bottom: 24px;
+
+      .form-input-container {
+        margin-bottom: 18px;
+      }
+      .last-child-component {
+        margin: 0;
+      }
+
+      .form-label {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+      }
+
+      .form-input {
+        border-color: darken($primary_background_color, 8%);
+        &:focus {
+          border-color: darken($primary_background_color, 16%);
+        }
+      }
+    }
+
+    .action-btn {
+      width: 150px;
+      font-size: 14px;
+      color: $text_color_dark;
+      font-weight: 400;
+      background-color: $primary_color;
+      color: #ffffff;
+      outline: none;
+      position: relative;
+      margin-right: 30px;
+    }
+  }
+
+  .action-link {
+    color: $primary_color;
+    padding: 3px 0;
+    font-weight: 500;
+    text-decoration: none;
+    &:hover {
+      color: lighten($primary_color, 8%);
+    }
+  }
+
+  .forgot-password-container {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .other-auth-option-container {
+    color: $text_color_dark;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+}
+
+@media only screen and (min-width: 701px) {
+  .auth-system-container {
+    padding: 48px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .auth-system-container {
+    padding: 36px;
+  }
+}
