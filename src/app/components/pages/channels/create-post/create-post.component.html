@@ -1,0 +1,23 @@
+<div class="create-post-container">
+  <form class="create-post-form cool-form" [formGroup]="createPostForm" (ngSubmit)="onCreate()">
+    <div class="form-control-container">
+      <div class="form-input-container">
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Title"
+          formControlName="title">
+      </div>
+      <div class="form-input-container last-child-component">
+        <textarea
+          class="form-input body-input"
+          type="text"
+          placeholder="Body"
+          formControlName="body"></textarea>
+      </div>
+    </div>
+    <div class="action-btn-container">
+      <button class="action-btn" mat-button type="submit">Post</button>
+    </div>
+  </form>
+</div>

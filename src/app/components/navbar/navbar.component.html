@@ -8,21 +8,11 @@
             <button class="menu-btn" (click)="onToggleSidebar.emit()" mat-button>
                 <i class="fa fa-bars"></i>
             </button>
-            <h3 class="page-title">Home</h3>
+            <h3 class="page-title">{{ channelName | ucwords }}</h3>
 
-            <div class="dropdown">
-              <button mat-button class="date-dropdown-btn" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              PAST 24 HOURS <i class="fas fa-caret-down"></i>
-              </button>
-
-              <div class="dropdown-menu date-dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item">Past hour</a>
-                <a class="dropdown-item">Past 24 hours</a>
-                <a class="dropdown-item">Past day</a>
-                <a class="dropdown-item">Past week</a>
-              </div>
-            </div>
+            <button (click)="onCreate()" *ngIf="createPost" mat-button class="create-new-post-btn">
+              <span class="text">CREATE POST</span> <i class="fas fa-plus"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -69,7 +59,7 @@
 
                 <div class="dropdown-menu user-dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item"
-                  [routerLink]="['', 'user', userService.user.value.username]">Profile</a>
+                  [routerLink]="['', 'u', userService.user.value.username]">Profile</a>
                   <a class="dropdown-item" (click)="authService.logout()">Logout</a>
                 </div>
 

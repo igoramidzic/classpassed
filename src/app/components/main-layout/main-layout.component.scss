@@ -6,6 +6,9 @@
 
 .main-content-scroll-container {
   overflow-y: scroll;
+  .my-card {
+    width: 100%;
+  }
 }
 
 .sidenav-page-content-container {
@@ -23,6 +26,28 @@
     -moz-box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.75);
     box-shadow: 3px 0px 33px -8px rgba(0,0,0,0.1);
     padding: 24px 0;
+  }
+}
+
+.main-list-container {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-family: $font_4;
+
+  .main-list-item {
+    width: 100%;
+    padding: 12px;
+    border-bottom: 1px solid $primary_background_color;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      background-color: lighten($primary_background_color, 2%);
+    }
+    &:last-child {
+      margin: 0;
+    }
   }
 }
 
@@ -46,3 +71,12 @@
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .main-content-container {
+    padding: 12px 0 0;
+  }
+  .main-content-scroll-container {
+    padding: 0 0 24px;
+    height: calc(100% - 72px);
+  }
+}

@@ -3,6 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from './user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestore } from '../../../node_modules/angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private userService: UserService,
-              private router: Router, private route: ActivatedRoute) {}
+              private router: Router, private route: ActivatedRoute, private afs: AngularFirestore) {}
 
   createUserWithEmail (userInfo: {email: string, password: string, username: string}) {
     return new Promise ((resolve, reject) => {
@@ -51,6 +52,5 @@ export class AuthService {
   getStatus () {
     return this.afAuth.authState;
   }
-
 
 }

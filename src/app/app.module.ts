@@ -20,13 +20,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserComponent } from './components/pages/user/user.component';
 import { ProfileComponent } from './components/pages/user/profile/profile.component';
 import { SettingsComponent } from './components/pages/settings/settings.component';
-import { HomeComponent } from './components/pages/home/home.component';
+import { ChannelsComponent } from './components/pages/channels/channels.component';
 import { AuthComponent } from './components/pages/auth/auth.component';
 import { LoginComponent } from './components/pages/auth/login/login.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
 import { LoadingComponent } from './components/spinners/loading/loading.component';
+import { ChatComponent } from './components/pages/chat/chat.component';
+import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
+import { CreatePostComponent } from './components/pages/channels/create-post/create-post.component';
 
 
 @NgModule({
@@ -37,13 +40,16 @@ import { LoadingComponent } from './components/spinners/loading/loading.componen
     UserComponent,
     ProfileComponent,
     SettingsComponent,
-    HomeComponent,
+    ChannelsComponent,
     AuthComponent,
     LoginComponent,
     RegisterComponent,
     MainLayoutComponent,
     PageNotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    ChatComponent,
+    CreatePostComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

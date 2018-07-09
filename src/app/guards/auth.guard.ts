@@ -16,16 +16,17 @@ export class AuthGuard implements CanActivate {
 
     return new Promise ((resolve, reject) => {
       this.authService.getStatus().subscribe(user => {
+        console.log("Hello")
         if (user) {
           return resolve(true);
         }
         if (this.router.url == state.url || this.router.url == null) {
           this.router.navigate(['']);
         } else {
-          this.router.navigate([this.router.url]);
+          this.router.navigate(['login']);
         }
         return resolve(false);
-      })
+      });
     });
   }
 }

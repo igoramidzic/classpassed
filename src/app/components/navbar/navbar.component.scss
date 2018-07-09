@@ -14,7 +14,6 @@
     }
 
     .menu-btn {
-      margin-right: 24px;
       font-size: 20px;
       color: $text_color_light;
       outline: none;
@@ -25,13 +24,11 @@
     }
 
     .page-title {
-      font-size: 18px;
       font-weight: 400;
-      margin: 0 36px 0 0;
       color: $text_color_dark;
     }
 
-    .date-dropdown-btn {
+    .create-new-post-btn {
       background-color: transparent;
       border: none;
       color: $primary_color;
@@ -40,20 +37,11 @@
       letter-spacing: 0.5px;
       outline: none;
 
-      .fa-caret-down {
+      .fa-plus {
         position: relative;
         top: -2px;
         font-size: 16px;
         margin-left: 6px;
-      }
-    }
-
-    .date-dropdown-menu {
-      .dropdown-item {
-        color: $text_color_dark;
-        font-size: 16px;
-        font-weight: 300;
-        cursor: pointer;
       }
     }
   }
@@ -198,15 +186,42 @@
 }
 
 @media only screen and (max-width: 740px) {
-  .date-dropdown-btn {
-    display: none;
+  .create-new-post-btn {
+    .text {
+      display: none;
+    }
+
+    .fa-plus {
+      margin-left: 0 !important;
+    }
   }
 }
 
-@media only screen and (max-width: 560px) {
+@media only screen and (min-width: 601px) {
+  .menu-btn {
+    margin-right: 24px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    margin: 0 36px 0 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .menu-btn {
+    margin-right: 18px;
+  }
+
+  .page-title {
+    font-size: 16px;
+    margin: 0 18px 0 0;
+  }
+
   .search-container {
     display: none;
   }
+
 }
 
 // Padding

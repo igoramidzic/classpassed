@@ -1,0 +1,45 @@
+@import '../../../../app.component.scss';
+
+.create-post-container {
+  padding: 12px;
+
+  .create-post-form {
+    .form-control-container {
+      margin-bottom: 12px;
+
+      .form-input-container {
+        margin-bottom: 18px;
+      }
+      .last-child-component {
+        margin: 0;
+      }
+
+      .form-input {
+        padding: 8px 10px;
+        border-color: darken($primary_background_color, 8%);
+        &:focus {
+          border-color: $text_color_dark;
+        }
+      }
+
+      .body-input {
+        min-height: 130px;
+      }
+    }
+
+    .action-btn-container {
+      text-align: right;
+      .action-btn {
+        width: 150px;
+        font-size: 14px;
+        color: $text_color_dark;
+        font-weight: 400;
+        background-color: $primary_color;
+        color: #ffffff;
+        outline: none;
+        position: relative;
+        margin-left: 30px;
+      }
+    }
+  }
+}

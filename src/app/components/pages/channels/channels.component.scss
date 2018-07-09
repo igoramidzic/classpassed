@@ -1,0 +1,62 @@
+@import '../../../app.component.scss';
+@import '../../main-layout/main-layout.component.scss';
+
+.home-container {
+  .main-list-container {
+    .main-list-item {
+      cursor: pointer;
+      outline: none;
+
+      .image-container {
+        vertical-align: top;
+        min-height: 60px;
+        min-width: 80px;
+        display: inline-block;
+        margin-right: 24px;
+        background-color: $primary_background_color;
+        border-radius: 3px;
+        position: relative;
+
+        .img-placeholder {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          background-image: url("/assets/img/logo-gray.png");
+          background-position: center;
+          background-size: cover;
+          height: 24px;
+          width: 24px;
+
+        }
+      }
+
+      .content-container {
+        display: inline-block;
+        vertical-align: top;
+        padding: 4px 0 0 0;
+
+        .title {
+          font-weight: 400;
+          color: $text_color_dark;
+          font-size: 16px;
+          margin-bottom: 6px;
+        }
+        .description {
+          color: $text_color_light;
+          font-size: 12px;
+          margin: 0;
+          font-weight: 300;
+
+          .username {
+            color: $primary_color;
+            outline: none;
+            &:hover {
+              border-bottom: 1px solid $primary_color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
