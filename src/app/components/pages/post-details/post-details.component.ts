@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../services/post.service';
+import { ActivatedRoute, Router, NavigationEnd } from '../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-post-details',
@@ -8,14 +9,20 @@ import { PostService } from '../../../services/post.service';
 })
 export class PostDetailsComponent implements OnInit {
 
-  constructor(private postService: PostService) { }
+  post: any = {};
+
+  constructor(private postService: PostService, private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
-    this.postService.getPost('D6sOk60n1DLvW9bWf3PQ')
-      .then(res => {
-        let post = this.postService.mapDataToPosts(res.data());
-        console.log(post);
-      });
+    this.route.params.subscribe(res => {
+      this.route.params.subscribe(res => {
+        this.postService.getPost(res.postID)
+        .then(post => {
+          this.post = post;
+        })
+      })
+    })
   }
 
 }

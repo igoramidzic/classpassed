@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
 import { Post } from '../models/post';
-import { AngularFireModule, FirebaseApp } from '../../../node_modules/angularfire2';
+import { UserService } from './user.service';
+import { CommentService } from './comment.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +14,13 @@ export class PostService {
   posts: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth,
-              private firebase: FirebaseApp) {
+              private userService: UserService, private commentService: CommentService) {
   }
 
   // Get all posts
   retrieveAllPosts () {
     this.afs.collection('posts', ref => {
-      return ref.orderBy('timestamp', 'desc');
+      return ref.orderBy('timestamp', 'desc').limit(15);
     }).snapshotChanges().subscribe(async data => {
 
       let posts = await this.mapDataToPosts(data);
@@ -34,16 +34,39 @@ export class PostService {
     this.afs.collection('posts', ref => {
       return ref.orderBy('timestamp', 'desc').where('channel', '==', filter);
     }).snapshotChanges().subscribe(async data => {
-
       let posts = await this.mapDataToPosts(data);
-
       this.posts.next(posts);
     })
   }
 
   // Get one post by ID
   getPost (id: String) {
-    return this.afs.doc('posts/' + id).ref.get();
+    return new Promise ((resolve, reject) => {
+      this.afs.doc('posts/' + id).ref.get()
+        .then(async data => {
+          await this.mapDataToOnePost(data)
+            .then(res => resolve(res));
+          resolve();
+        })
+    })
+  }
+
+  // Map all data to one post
+  async mapDataToOnePost (res) {
+    return await new Promise (async (resolve, reject) => {
+      const data = res.data() as any;
+      const id = res.ref.id;
+      let user = null;
+      let comments = [];
+
+      await this.userService.getUserData(data.creator)
+        .then(res => user = res);
+
+      await this.commentService.getPostComments(res.ref)
+        .then((res: any[]) => comments = res);
+
+      resolve({ id, ...data, user, comments });
+    })
   }
 
   // Map all data to posts array
@@ -53,10 +76,8 @@ export class PostService {
       const id = a.payload.doc.id;
       let user = null;
 
-      // Get user data and add object to post object
-      await this.afs.doc(data.creator).ref.get().then(res => {
-        user = res.data();
-      })
+      await this.userService.getUserData(data.creator)
+        .then(res => user = res);
 
       return { id, ...data, user };
     }));

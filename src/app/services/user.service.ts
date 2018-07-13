@@ -13,9 +13,10 @@ export class UserService {
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.getUserData().subscribe(user => {
-          this.user.next(user);
-        })
+        this.getUserData('users/' + this.afAuth.auth.currentUser.uid)
+          .then(user => {
+            this.user.next(user);
+          })
       } else {
         this.user.next(null);
       }
@@ -30,8 +31,20 @@ export class UserService {
     })
   }
 
-  getUserData () {
-    return this.afs.doc('users/' + this.afAuth.auth.currentUser.uid).valueChanges();
+  getUserData (userRef) {
+    return new Promise((resolve, reject) => {
+      this.afs.doc(userRef).ref.get()
+        .then(res => resolve(res.data()))
+        .catch(error => reject(error));
+    })
+  }
+
+  checkDuplicateUsername (username) {
+    return new Promise ((resolve, reject) => {
+      this.afs.collection('users').ref.where('username', '==', username).get()
+        .then(res => resolve(res))
+        .catch(error => reject(error));
+    });
   }
 
 }

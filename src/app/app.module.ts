@@ -30,6 +30,7 @@ import { LoadingComponent } from './components/spinners/loading/loading.componen
 import { ChatComponent } from './components/pages/chat/chat.component';
 import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
 import { CreatePostComponent } from './components/pages/channels/create-post/create-post.component';
+import { ScrollableDirective } from './directives/scrollable.directive';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { CreatePostComponent } from './components/pages/channels/create-post/cre
     LoadingComponent,
     ChatComponent,
     CreatePostComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    ScrollableDirective
   ],
   imports: [
     BrowserModule,

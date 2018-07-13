@@ -1,16 +1,29 @@
-<div class="home-container">
-  <ul class="main-list-container">
-    <li [routerLink]="[ '', 'c', post.channel, post.id ]" class="main-list-item" *ngFor="let post of postService.posts | async">
-      <div class="image-container">
-        <div class="img-placeholder"></div>
+<div class="main-content-scroll-container" scrollable (scrollPosition)="scrollHandler($event)">
+  <div class="my-card">
+    <div class="home-container">
+      <ul class="main-list-container center-container" *ngIf="postService.posts.value">
+        <li [routerLink]="[ '', 'c', post.channel, post.id ]" class="main-list-item center-left-top-content" *ngFor="let post of postService.posts | async">
+          <div class="image-container">
+            <div class="img-placeholder"></div>
+          </div>
+          <div class="content-container">
+            <h5 class="title">{{ post.title }}</h5>
+            <pre class="body" [innerHTML]="post.body"></pre>
+            <p class="description">
+              submitted {{ post.timestamp.seconds * 1000 | date:'MMM, dd' }} by
+              <span class="username" [routerLink]="['', 'u', post.user.username ]">{{ post.user.username }}</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="loading-container" *ngIf="!postService.posts.value">
+        <app-loading class="spinner"></app-loading>
       </div>
-      <div class="content-container">
-        <h5 class="title">{{ post.title }}</h5>
-        <p class="description">
-          submitted {{ post.timestamp.seconds * 1000 | date:'MMM, dd' }} by
-          <span class="username" [routerLink]="['', 'u', post.user.username ]">{{ post.user.username }}</span>
-        </p>
-      </div>
-    </li>
-  </ul>
+
+      <div class="no-posts-container" *ngIf="postService.posts.value?.length == 0">No posts</div>
+    </div>
+  </div>
 </div>
+
+

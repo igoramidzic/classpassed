@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../../services/post.service';
-import { Post } from '../../../models/post';
 import { ActivatedRoute } from '@angular/router';
 import { RouteDataService } from '../../../services/route-data.service';
 
@@ -15,6 +14,9 @@ export class ChannelsComponent implements OnInit {
               private routeDataService: RouteDataService) { }
 
   ngOnInit() {
+
+    // this.page.init('boats', 'year', { reverse: true, prepend: false });
+
     this.route.url.subscribe(url => {
       if (url[1].path == 'all') {
         this.postService.retrieveAllPosts();
@@ -22,6 +24,12 @@ export class ChannelsComponent implements OnInit {
         this.postService.filterPosts(url[1].path);
       }
     });
+  }
+
+  scrollHandler (e) {
+    if (e === 'bottom') {
+      // this.page.more();
+    }
   }
 
 }

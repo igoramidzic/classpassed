@@ -1,3 +1,12 @@
-<p>
-  post-details works!
-</p>
+
+<div class="my-card">
+  <div class="post-details-container" *ngIf="post.user">
+    {{ post.title }} <br>
+    {{ post.body }} <br>
+    {{ post.user.username }} <br>
+    <div *ngFor="let comment of post.comments">
+      {{ comment.comment }} - {{ comment.user.username }}
+    </div>
+  </div>
+</div>
+

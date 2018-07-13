@@ -1,7 +1,7 @@
 @import '../../app.component.scss';
 
 .main-content-container {
-  height: 100vh;
+  height: calc(100vh - 1px);
 }
 
 .main-content-scroll-container {

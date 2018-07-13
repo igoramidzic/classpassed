@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   hasError: String;
   submitting: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService) { }
 
   ngOnInit() {
     this.hasError = null;
@@ -38,28 +39,21 @@ export class RegisterComponent implements OnInit {
 
     this.checkFormValidity();
 
-    if (this.registerForm.valid) {
-      this.authService.createUserWithEmail(user)
-      .then(user => {
-        this.submitting = false;
-      })
-      .catch(error => {
-        this.submitting = false;
-
-        console.log(error);
-        if (error.code == 'auth/invalid-email') {
-          this.registerForm.controls['email'].setErrors({ error: 'Invalid email' });
-        } else if (error.code == 'auth/email-already-in-use') {
-          this.registerForm.controls['email'].setErrors({ error: 'Email is already taken' });
-        } else if (error.code == 'auth/weak-password') {
-          this.registerForm.controls['password']
-              .setErrors({ error: 'Must be at least 6 characters' });
-          console.log(this.registerForm.controls['password'].errors);
-        }
-      })
+    if (!this.registerForm.errors && !this.registerForm.controls['username'].errors) {
+      console.log("Checking");
+      this.userService.checkDuplicateUsername(this.registerForm.get('username').value)
+        .then((res: {size: number}) => {
+          if (res.size > 0) {
+            this.registerForm.controls['username'].setErrors({ error: 'Username already taken'});
+            this.submitting = false;
+          } else {
+            this.submitForm(user);
+          }
+        })
     } else {
       this.submitting = false;
     }
+
   }
 
   checkFormValidity () {
@@ -82,6 +76,36 @@ export class RegisterComponent implements OnInit {
     if (!user.password) {
       this.registerForm.controls['password'].setErrors({ error: 'Password cannot be blank' });
     }
+  }
+
+  checkDuplicateUsername () {
+    this.userService.checkDuplicateUsername(this.registerForm.get('username').value)
+      .then((res: {size: number}) => {
+        if (res.size > 0) {
+          this.registerForm.controls['username'].setErrors({ error: 'Username already taken'});
+        }
+      })
+  }
+
+  submitForm (user) {
+    this.authService.createUserWithEmail(user)
+      .then(user => {
+        this.submitting = false;
+      })
+      .catch(error => {
+        this.submitting = false;
+
+        console.log(error);
+        if (error.code == 'auth/invalid-email') {
+          this.registerForm.controls['email'].setErrors({ error: 'Invalid email' });
+        } else if (error.code == 'auth/email-already-in-use') {
+          this.registerForm.controls['email'].setErrors({ error: 'Email is already taken' });
+        } else if (error.code == 'auth/weak-password') {
+          this.registerForm.controls['password']
+              .setErrors({ error: 'Must be at least 6 characters' });
+          console.log(this.registerForm.controls['password'].errors);
+        }
+      })
   }
 
 }

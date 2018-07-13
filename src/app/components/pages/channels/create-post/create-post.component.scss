@@ -31,7 +31,7 @@
       text-align: right;
       .action-btn {
         width: 150px;
-        font-size: 14px;
+        font-size: 16px;
         color: $text_color_dark;
         font-weight: 400;
         background-color: $primary_color;
@@ -39,6 +39,36 @@
         outline: none;
         position: relative;
         margin-left: 30px;
+      }
+    }
+
+    .channel-container {
+      margin-bottom: 18px;
+
+      .channel-btn {
+        font-size: 16px;
+        font-weight: 400;
+        color: $primary_color;
+        background-color: #ffffff;
+        border: 1px solid darken($primary_background_color, 8%);
+        outline: none;
+
+        .fa-caret-down {
+          position: relative;
+          font-size: 18px;
+          top: -2px;
+          margin-left: 6px;
+        }
+      }
+
+      .dropdown-item {
+        color: $text_color_dark;
+        font-size: 16px;
+        font-weight: 300;
+        cursor: pointer;
+        &:active {
+          background-color: $primary_background_color;
+        }
       }
     }
   }

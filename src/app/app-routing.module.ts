@@ -21,7 +21,8 @@ const routes: Routes = [
       { path: 'c/:channelName', component: ChannelsComponent, data: { pageName: 'channel', createPost: true } },
       { path: 'c/:channelName/:postID', component: PostDetailsComponent, data: { pageName: 'post-details' } },
       { path: 'u/:username', component: ProfileComponent, data: { pageName: 'profile' } },
-      { path: 'chat', component: ChatComponent, data: { pageName: 'chat' } }
+      { path: 'chat', component: ChatComponent, data: { pageName: 'chat' } },
+      { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard], data: { pageName: 'settings' } }
     ]
   },
   { path: '**', component: PageNotFoundComponent },

@@ -1,5 +1,16 @@
 <div class="create-post-container">
   <form class="create-post-form cool-form" [formGroup]="createPostForm" (ngSubmit)="onCreate()">
+    <div class="channel-container">
+      <div class="dropdown">
+        <button mat-button class="channel-btn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ createPostForm.get('channel').value | ucfirst }} <i class="fas fa-caret-down"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a (click)="createPostForm.get('channel').setValue('discussions')" class="dropdown-item">Discussions</a>
+          <a (click)="createPostForm.get('channel').setValue('homework-help')" class="dropdown-item">Homework Help</a>
+        </div>
+      </div>
+    </div>
     <div class="form-control-container">
       <div class="form-input-container">
         <input

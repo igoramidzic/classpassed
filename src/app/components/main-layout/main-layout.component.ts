@@ -34,4 +34,8 @@ export class MainLayoutComponent implements OnInit {
       this.mode = 'over';
     }
   }
+
+  scrollHandler (e) {
+    console.log(e);
+  }
 }

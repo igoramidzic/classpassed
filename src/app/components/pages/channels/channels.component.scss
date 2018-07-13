@@ -37,10 +37,18 @@
         padding: 4px 0 0 0;
 
         .title {
-          font-weight: 400;
+          font-weight: 600;
           color: $text_color_dark;
           font-size: 16px;
+          margin-bottom: 4px;
+        }
+        .body {
+          font-weight: 300;
+          color: $text_color_dark;
+          font-size: 15px;
           margin-bottom: 6px;
+          line-height: 0.9;
+          font-family: $font_4;
         }
         .description {
           color: $text_color_light;
@@ -57,6 +65,15 @@
           }
         }
       }
+    }
+  }
+
+  .loading-container {
+    padding: 24px;
+    text-align: center;
+
+    .spinner {
+      margin: 0 auto;
     }
   }
 }
