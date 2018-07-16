@@ -56,6 +56,7 @@ export class PostService {
     return await new Promise (async (resolve, reject) => {
       const data = res.data() as any;
       const id = res.ref.id;
+      const postRef = res.ref;
       let user = null;
       let comments = [];
 
@@ -65,7 +66,7 @@ export class PostService {
       await this.commentService.getPostComments(res.ref)
         .then((res: any[]) => comments = res);
 
-      resolve({ id, ...data, user, comments });
+      resolve({ id, ...data, postRef, user, comments });
     })
   }
 

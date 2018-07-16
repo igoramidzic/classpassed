@@ -1,5 +1,373 @@
 @import '../../../app.component.scss';
 
 .post-details-container {
+  width: 100%;
   padding: 12px;
+  margin-bottom: 36px;
+
+  .loading-container {
+    padding: 12px;
+    text-align: center;
+
+    .spinner {
+      margin: 0 auto;
+    }
+  }
+
+  .content-wrapper {
+    width: 100%;
+  }
+
+  .post-container {
+    font-size: 12px;
+    width: 100%;
+
+    .top-header-container {
+      margin-bottom: 6px;
+
+      .channel-link {
+        color: $text_color_dark;
+        font-weight: 500;
+      }
+
+      .posted-by-wrapper {
+        font-weight: 300;
+        color: $text_color_light;
+        .user-link {
+          color: $primary_color;
+        }
+      }
+    }
+
+    .post-content-container {
+      .title {
+        font-weight: 500;
+        color: $text_color_dark;
+        margin-bottom: 12px;
+      }
+
+      .body {
+        font-weight: 300;
+        color: $text_color_dark;
+        margin-bottom: 12px;
+        line-height: 1;
+        font-family: $font_4;
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;
+        overflow: hidden;
+      }
+    }
+
+
+
+    .stat-container {
+      margin-bottom: 24px;
+      .stat-link {
+        color: $text_color_light;
+        font-weight: 500;
+        font-size: 13px;
+        cursor: pointer;
+        padding: 4px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        margin-right: 2px;
+        &:hover {
+          background-color: $primary_background_color;
+        }
+
+        .fa-comment, .fa-share {
+          margin-right: 2px;
+        }
+      }
+
+      .menu-btn {
+        padding: 4px 8px;
+      }
+
+      .comment-link {
+        cursor: default;
+      }
+
+      .dropdown-menu {
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .dropdown-item {
+        color: $text_color_dark;
+        font-size: 14px;
+        font-weight: 300;
+        cursor: pointer;
+        &:active {
+          background-color: $primary_background_color;
+        }
+      }
+    }
+  }
+
+  .add-comment-container {
+    .comment-as-header {
+      font-size: 12px;
+      font-weight: 300;
+      margin: 0 0 4px 0;
+      color: $text_color_dark;
+      .accent {
+        color: $primary_color;
+      }
+    }
+
+    .form-control-container {
+      margin-bottom: 12px;
+
+      .form-input-container {
+        margin-bottom: 8px;
+      }
+      .last-child-component {
+        margin: 0;
+      }
+
+      .form-input {
+        padding: 8px 10px;
+        border-color: darken($primary_background_color, 8%);
+        &:focus {
+          border-color: $text_color_dark;
+        }
+      }
+
+      .comment-textarea {
+        min-height: 130px;
+      }
+    }
+
+    .action-btn-container {
+      text-align: right;
+      .action-btn {
+        width: 120px;
+        font-size: 14px;
+        color: $text_color_dark;
+        font-weight: 400;
+        background-color: $primary_color;
+        color: #ffffff;
+        outline: none;
+        position: relative;
+        margin-left: 30px;
+      }
+    }
+  }
+
+  .not-logged-in-comment-container {
+    padding: 12px;
+    border: 1px solid $primary_background_color;
+    border-radius: 3px;
+
+    .instructions {
+      font-weight: 300;
+      font-size: 16px;
+      color: $text_color_dark;
+    }
+
+    .auth-btn-group {
+      .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+        min-width: 0;
+        padding: 8px 10px;
+        line-height: 1;
+      }
+
+      .action-btn {
+        font-size: 14px;
+        font-weight: 300;
+        color: $text_color_dark;
+        outline: none;
+      }
+      .login-btn {
+        background-color: transparent;
+        color: $primary_color;
+        border: 1px solid $primary_color;
+        margin-right: 12px;
+        outline: none;
+      }
+      .signup-btn {
+        background-color: $primary_color;
+        color: #ffffff;
+        border: 1px solid $primary_color;
+        outline: none;
+      }
+    }
+  }
+
+  .img-container {
+    display: inline-block;
+    background-color: $primary_background_color;
+    border-radius: 3px;
+    position: relative;
+
+    .img-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      background-image: url("/assets/img/logo-gray.png");
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  .create-comment-and-comments-separator {
+    background-color: $primary_background_color;
+    margin: 36px 0;
+  }
+
+  .comments-container {
+    .comment-list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      .comment-item {
+        margin-bottom: 24px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .header-container {
+          font-size: 12px;
+          font-weight: 300;
+          color: $text_color_dark;
+          margin-bottom: 4px;
+          .username {
+            color: $primary_color;
+          }
+        }
+
+        .comment-content {
+          .comment {
+            font-size: 16px;
+            font-weight: 400;
+            color: $text_color_dark;
+            line-height: 1.2;
+            padding: 0;
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .stat-link {
+      color: lighten($text_color_dark, 20%);
+      font-weight: 500;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 4px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      margin-right: 2px;
+      &:hover {
+        background-color: $primary_background_color;
+      }
+    }
+
+    .menu-btn {
+      padding: 0px 8px;
+    }
+    .dropdown-menu {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .dropdown-item {
+      color: $text_color_dark;
+      font-size: 14px;
+      font-weight: 300;
+      cursor: pointer;
+      &:active {
+        background-color: $primary_background_color;
+      }
+    }
+  }
+
+  .no-comments-container {
+    text-align: center;
+    color: $text_color_dark;
+    padding: 12px 0 36px 0;
+
+    .icon-container {
+      margin-bottom: 4px;
+    }
+    .fa-comments {
+      font-size: 20px;
+      color: $primary_color;
+    }
+
+    .header {
+      font-weight: 400;
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .description {
+      font-weight: 300;
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+
+}
+
+@media only screen and (min-width: 701px) {
+  .post-details-container {
+
+    .break-top-header {
+      display: none;
+    }
+
+    .img-container {
+      min-height: 90px;
+      min-width: 110px;
+      margin-left: 24px;
+
+      .img-placeholder {
+        height: 32px;
+        width: 32px;
+      }
+    }
+
+    .post-content-container {
+      .title {
+        font-size: 18px;
+      }
+
+      .body {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .post-details-container {
+    .img-container {
+      min-height: 60px;
+      min-width: 80px;
+      margin-left: 12px;
+
+      .img-placeholder {
+        height: 24px;
+        width: 24px;
+      }
+    }
+
+    .post-content-container {
+      .title {
+        font-size: 15px;
+      }
+
+      .body {
+        font-size: 14px;
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UserService } from './user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '../../../node_modules/angularfire2/firestore';
+import { Location } from '../../../node_modules/@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import { AngularFirestore } from '../../../node_modules/angularfire2/firestore';
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth, private userService: UserService,
-              private router: Router, private route: ActivatedRoute, private afs: AngularFirestore) {}
+              private router: Router, private route: ActivatedRoute, private afs: AngularFirestore,
+              private location: Location) {}
 
   createUserWithEmail (userInfo: {email: string, password: string, username: string}) {
     return new Promise ((resolve, reject) => {
@@ -19,7 +21,7 @@ export class AuthService {
         .then(user => {
           this.userService.setUsersUsername(userInfo.username)
             .then(() => {
-              this.router.navigate([(this.route.snapshot.queryParams['redirectTo'] || '')]);
+              this.location.back();
             })
             .catch(error => {
               alert(error);
@@ -34,7 +36,7 @@ export class AuthService {
     return new Promise ((resolve, reject) => {
       this.afAuth.auth.signInWithEmailAndPassword(userInfo.email, userInfo.password)
       .then(user => {
-        this.router.navigate(['']);
+        this.location.back();
         resolve(user);
       })
       .catch(error => reject(error));

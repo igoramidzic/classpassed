@@ -10,7 +10,7 @@
             <h5 class="title">{{ post.title }}</h5>
             <pre class="body" [innerHTML]="post.body"></pre>
             <p class="description">
-              submitted {{ post.timestamp.seconds * 1000 | date:'MMM, dd' }} by
+              submitted {{ post.timestamp.seconds * 1000 | timeAgo }} by
               <span class="username" [routerLink]="['', 'u', post.user.username ]">{{ post.user.username }}</span>
             </p>
           </div>

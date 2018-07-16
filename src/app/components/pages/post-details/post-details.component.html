@@ -1,11 +1,127 @@
+<div class="post-details-container my-card">
+  <div class="loading-container" *ngIf="!post">
+    <app-loading class="spinner"></app-loading>
+  </div>
+  <div class="need-post-wrapper" *ngIf="post">
+    <div class="content-wrapper center-container">
+      <div class="center-left-top-content">
+        <div class="post-container">
+          <div class="top-header-container">
+            <a [routerLink]="['', 'c', post.channel]" class="channel-link">c/{{ post.channel }}</a>
+            <span class="posted-by-wrapper">
+              • Posted by
+              <a class="user-link" [routerLink]="['', 'u', post.user.username]">
+                u/{{ post.user.username }}
+              </a>
+              {{ post.timestamp.seconds * 1000 | timeAgo }}
+            </span>
+          </div>
 
-<div class="my-card">
-  <div class="post-details-container" *ngIf="post.user">
-    {{ post.title }} <br>
-    {{ post.body }} <br>
-    {{ post.user.username }} <br>
-    <div *ngFor="let comment of post.comments">
-      {{ comment.comment }} - {{ comment.user.username }}
+          <div class="post-content-container">
+            <h4 class="title">{{ post.title }}</h4>
+            <pre class="body" [innerHTML]="post.body"></pre>
+          </div>
+
+          <div class="stat-container">
+            <span class="stat-link comment-link">
+              <i class="fas fa-comment"></i> {{ post.comments.length }} Comments
+            </span>
+
+            <div class="btn-group">
+              <button class="stat-link" id="dropdownShareButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-share"></i> Share
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownShareButton">
+                <a class="dropdown-item">Copy link</a>
+              </div>
+            </div>
+
+            <div class="btn-group" *ngIf="post.user.username == userService.user.value?.username">
+              <button class="stat-link menu-btn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a (click)="onEditPost()" class="dropdown-item">Edit</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="img-container"><div class="img-placeholder"></div></div>
+      </div>
+    </div>
+
+    <div class="add-comment-container" *ngIf="userService.user.value">
+      <div class="comment-as-header">
+        Comment as
+        <a [routerLink]="['', 'u', 'userService.user.value?.username']" class="accent">
+          {{ userService.user.value?.username }}
+        </a>
+      </div>
+
+      <form class="create-comment-form cool-form"
+        [formGroup]="createCommentForm" (ngSubmit)="onSubmit()">
+        <div class="form-control-container">
+          <div class="form-input-container">
+            <textarea
+              class="comment-textarea form-input"
+              type="text"
+              placeholder="What are your thoughts?"
+              formControlName="comment"></textarea>
+          </div>
+        </div>
+        <div class="action-btn-container">
+          <button [disabled]="createCommentForm.invalid" class="action-btn" mat-button type="submit">Comment</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="not-logged-in-comment-container" *ngIf="!userService.user.value">
+      <div class="center-container">
+        <div class="center-space-between-content">
+          <div class="instructions">
+            What are your thoughts? Log in or Sign up
+          </div>
+
+          <div class="auth-btn-group">
+            <button mat-button class="action-btn login-btn" (click)="onLogin()">Log in</button>
+            <button mat-button class="action-btn signup-btn" (click)="onSignup()">Sign up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="create-comment-and-comments-separator">
+
+    <div class="comments-container">
+      <ul class="comment-list" *ngIf="post.comments.length > 0">
+        <li class="comment-item" *ngFor="let comment of post.comments">
+          <div class="header-container">
+            <a [routerLink]="['', 'u', comment.user.username]" class="username">
+              {{ comment.user.username }}
+            </a>
+            • {{ comment.timestamp.seconds * 1000 | timeAgo }}
+            <div class="btn-group" *ngIf="comment.user.username == userService.user.value?.username">
+              <button class="stat-link menu-btn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a (click)="onEditPost()" class="dropdown-item">Edit</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment-content">
+            <p class="comment">{{ comment.comment }}</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="no-comments-container" *ngIf="post.comments.length == 0">
+        <p class="icon-container"><i class="fas fa-comments"></i></p>
+        <p class="header">No Comments Yet</p>
+        <p class="description">Be the first to share what you think!</p>
+      </div>
     </div>
   </div>
 </div>
