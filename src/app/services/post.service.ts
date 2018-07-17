@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, DocumentReference } from 'angularfire2/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '../../../node_modules/angularfire2/auth';
 import { Post } from '../models/post';
@@ -44,9 +44,13 @@ export class PostService {
     return new Promise ((resolve, reject) => {
       this.afs.doc('posts/' + id).ref.get()
         .then(async data => {
-          await this.mapDataToOnePost(data)
+          if (data.exists) {
+            await this.mapDataToOnePost(data)
             .then(res => resolve(res));
-          resolve();
+            resolve();
+          } else {
+            reject('Post not found');
+          }
         })
     })
   }
@@ -98,6 +102,22 @@ export class PostService {
         .then(res => resolve(res))
         .catch(error => reject(error));
     });
+  }
+
+  editPost (postRef: DocumentReference, data: {title: String, body: String}) {
+    return new Promise((resolve, reject) => {
+      this.afs.doc(postRef).update(data)
+        .then(() => resolve())
+        .catch(error => reject(error));
+    })
+  }
+
+  deletePost (postRef: DocumentReference) {
+    return new Promise ((resolve, reject) => {
+      this.afs.doc(postRef).delete()
+        .then(() => resolve())
+        .catch(error => reject(error));
+    })
   }
 
 

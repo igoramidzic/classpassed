@@ -49,4 +49,12 @@ export class CommentService {
         .catch(error => reject(error));
     });
   }
+
+  deleteComment (postRef: DocumentReference) {
+    return new Promise ((resolve, reject) => {
+      this.afs.doc(postRef).delete()
+        .then(() => resolve())
+        .catch(error => reject(error));
+    })
+  }
 }

@@ -22,6 +22,56 @@
     font-size: 12px;
     width: 100%;
 
+    .edit-post-form {
+      margin-bottom: 12px;
+
+      .form-control-container {
+        margin-bottom: 12px;
+
+        .form-input-container {
+          margin-bottom: 12px;
+        }
+        .last-child-component {
+          margin: 0;
+        }
+
+        .form-input {
+          padding: 8px 10px;
+          border-color: darken($primary_background_color, 8%);
+          &:focus {
+            border-color: $text_color_dark;
+          }
+        }
+
+        .body-input {
+          min-height: 130px;
+        }
+      }
+
+      .action-btn-container {
+        text-align: right;
+        .action-btn {
+          width: 110px;
+          font-size: 14px;
+          font-weight: 400;
+          background-color: $primary_color;
+          color: #ffffff;
+          outline: none;
+          position: relative;
+          margin-left: 16px;
+          border: 1px solid $primary_color;
+        }
+        .edit-btn {
+          float: right;
+        }
+        .cancel-btn {
+          color: $text_color_light;
+          background-color: $primary_background_color;
+          border: 1px solid darken($primary_background_color, 5%);
+        }
+      }
+    }
+
     .top-header-container {
       margin-bottom: 6px;
 
@@ -99,7 +149,7 @@
 
       .dropdown-item {
         color: $text_color_dark;
-        font-size: 14px;
+        font-size: 11px;
         font-weight: 300;
         cursor: pointer;
         &:active {
@@ -245,12 +295,50 @@
         .comment-content {
           .comment {
             font-size: 16px;
-            font-weight: 400;
+            font-weight: 300;
             color: $text_color_dark;
             line-height: 1.2;
             padding: 0;
             margin: 0;
           }
+        }
+      }
+
+      .form-control-container {
+        margin-bottom: 12px;
+
+        .form-input-container {
+          margin-bottom: 8px;
+        }
+        .last-child-component {
+          margin: 0;
+        }
+
+        .form-input {
+          padding: 8px 10px;
+          border-color: darken($primary_background_color, 8%);
+          &:focus {
+            border-color: $text_color_dark;
+          }
+        }
+
+        .comment-textarea {
+          min-height: 130px;
+        }
+      }
+
+      .action-btn-container {
+        text-align: right;
+        .action-btn {
+          width: 120px;
+          font-size: 14px;
+          color: $text_color_dark;
+          font-weight: 400;
+          background-color: $primary_color;
+          color: #ffffff;
+          outline: none;
+          position: relative;
+          margin-left: 30px;
         }
       }
     }
@@ -289,15 +377,14 @@
     }
   }
 
-  .no-comments-container {
+  .missing-data-container {
     text-align: center;
     color: $text_color_dark;
-    padding: 12px 0 36px 0;
 
     .icon-container {
       margin-bottom: 4px;
     }
-    .fa-comments {
+    .fa-comments, .fa-question-circle {
       font-size: 20px;
       color: $primary_color;
     }
@@ -313,6 +400,13 @@
       font-size: 14px;
       margin: 0;
     }
+  }
+
+  .no-comments-container {
+    padding: 12px 0 36px 0;
+  }
+  .post-not-found-container {
+    padding: 24px 0;
   }
 
 }

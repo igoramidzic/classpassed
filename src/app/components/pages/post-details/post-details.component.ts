@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '../../../../../node_modul
 import { UserService } from '../../../services/user.service';
 import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
 import { CommentService } from '../../../services/comment.service';
+import { AngularFirestore } from '../../../../../node_modules/angularfire2/firestore';
 
 @Component({
   selector: 'app-post-details',
@@ -14,14 +15,20 @@ export class PostDetailsComponent implements OnInit {
 
   post: any = null;
   createCommentForm: FormGroup;
+  editPostForm: FormGroup;
   hasError: String;
   submitting: boolean;
+  loading: boolean;
+  postLink: string;
+  editPost: boolean = false;
 
   constructor(private postService: PostService, private route: ActivatedRoute,
               private router: Router, public userService: UserService,
-              private commentService: CommentService) { }
+              private commentService: CommentService,
+              private afs: AngularFirestore) { }
 
   ngOnInit() {
+    this.postLink = window.location.href;
     this.route.params.subscribe(res => {
       this.getPost();
     })
@@ -33,16 +40,32 @@ export class PostDetailsComponent implements OnInit {
 			'comment': new FormControl(null, [
         Validators.required
       ])
-		});
+    });
+
+
   }
 
   getPost () {
+    this.loading = true;
     this.route.params.subscribe(res => {
       this.postService.getPost(res.postID)
       .then(post => {
         this.post = post;
+        this.loading = false;
+        this.editPostForm = new FormGroup({
+          'title': new FormControl(this.post.title, [
+            Validators.required
+          ]),
+          'body': new FormControl(this.post.body, [
+            Validators.required
+          ])
+        })
       })
-    }).unsubscribe();
+      .catch(error => {
+        this.post = null;
+        this.loading=false;
+      })
+    })
   }
 
   onSubmit () {
@@ -59,8 +82,33 @@ export class PostDetailsComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  onEditPost () {
+  onEditPostSubmit () {
+    if (this.editPostForm.valid && this.editPostForm.dirty) {
+      let data = {
+        title: this.editPostForm.get('title').value,
+        body: this.editPostForm.get('body').value
+      }
+      this.postService.editPost(this.afs.doc('posts/' + this.post.id).ref, data)
+        .then(res => {
+          this.editPost = false;
+          this.getPost();
+        })
+        .catch(error => console.log(error));
+    }
+  }
 
+  onDeletePost () {
+    this.postService.deletePost(this.afs.doc('posts/' + this.post.id).ref)
+      .then(() => {
+        this.router.navigate(['']);
+      });
+  }
+
+  onDeleteComment (commentID) {
+    this.commentService.deleteComment(this.afs.doc('comments/' + commentID).ref)
+      .then(() => {
+        this.getPost();
+      });
   }
 
   onLogin () {

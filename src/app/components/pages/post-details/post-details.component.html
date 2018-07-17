@@ -1,7 +1,15 @@
 <div class="post-details-container my-card">
-  <div class="loading-container" *ngIf="!post">
+
+  <div class="loading-container" *ngIf="!post && loading">
     <app-loading class="spinner"></app-loading>
   </div>
+
+  <div class="missing-data-container post-not-found-container" *ngIf="!post && !loading">
+    <p class="icon-container"><i class="fas fa-question-circle"></i></p>
+    <p class="header">Post Not Found</p>
+    <p class="description">Maybe it was deleted?</p>
+  </div>
+
   <div class="need-post-wrapper" *ngIf="post">
     <div class="content-wrapper center-container">
       <div class="center-left-top-content">
@@ -17,9 +25,37 @@
             </span>
           </div>
 
-          <div class="post-content-container">
+          <div class="post-content-container" *ngIf="!editPost">
             <h4 class="title">{{ post.title }}</h4>
             <pre class="body" [innerHTML]="post.body"></pre>
+          </div>
+
+          <div class="edit-post-container" *ngIf="editPost">
+            <form class="edit-post-form cool-form"
+              [formGroup]="editPostForm" (ngSubmit)="onEditPostSubmit()">
+              <div class="form-control-container">
+                <div class="form-input-container">
+                  <input
+                    class="form-input"
+                    type="text"
+                    placeholder="Title"
+                    formControlName="title">
+                </div>
+              </div>
+              <div class="form-control-container">
+                <div class="form-input-container">
+                  <textarea
+                    class="body-input form-input"
+                    type="text"
+                    placeholder="What are your thoughts?"
+                    formControlName="body"></textarea>
+                </div>
+              </div>
+              <div class="action-btn-container">
+                <button [disabled]="this.editPostForm.invalid || !this.editPostForm.dirty" class="action-btn edit-btn" mat-button type="submit">Edit</button>
+                <button mat-button (click)="editPost = false" class="action-btn cancel-btn">Cancel</button>
+              </div>
+            </form>
           </div>
 
           <div class="stat-container">
@@ -32,7 +68,7 @@
                 <i class="fas fa-share"></i> Share
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownShareButton">
-                <a class="dropdown-item">Copy link</a>
+                <a class="dropdown-item" ngxClipboard [cbContent]="postLink">Copy link</a>
               </div>
             </div>
 
@@ -41,7 +77,8 @@
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a (click)="onEditPost()" class="dropdown-item">Edit</a>
+                <a (click)="editPost = true" class="dropdown-item">Edit</a>
+                <a (click)="onDeletePost()" class="dropdown-item">Delete</a>
               </div>
             </div>
 
@@ -106,18 +143,37 @@
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a (click)="onEditPost()" class="dropdown-item">Edit</a>
+                <a (click)="comment.editComment = true" class="dropdown-item">Edit</a>
+                <a (click)="onDeleteComment(comment.id)" class="dropdown-item">Delete</a>
               </div>
             </div>
           </div>
 
-          <div class="comment-content">
+          <div class="comment-content" *ngIf="!comment.editComment">
             <p class="comment">{{ comment.comment }}</p>
+          </div>
+
+          <div class="edit-comment-container" *ngIf="comment.editComment">
+            <form class="edit-comment-form cool-form"
+              [formGroup]="editCommentForm" (ngSubmit)="onEditCommentSubmit()">
+              <div class="form-control-container">
+                <div class="form-input-container">
+                  <textarea
+                    class="comment-textarea form-input"
+                    type="text"
+                    placeholder="What are your thoughts?"
+                    formControlName="comment"></textarea>
+                </div>
+              </div>
+              <div class="action-btn-container">
+                <button [disabled]="createCommentForm.invalid" class="action-btn" mat-button type="submit">Comment</button>
+              </div>
+            </form>
           </div>
         </li>
       </ul>
 
-      <div class="no-comments-container" *ngIf="post.comments.length == 0">
+      <div class="missing-data-container no-comments-container" *ngIf="post.comments.length == 0">
         <p class="icon-container"><i class="fas fa-comments"></i></p>
         <p class="header">No Comments Yet</p>
         <p class="description">Be the first to share what you think!</p>

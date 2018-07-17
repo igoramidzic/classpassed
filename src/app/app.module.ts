@@ -12,6 +12,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,7 +69,8 @@ import { ScrollableDirective } from './directives/scrollable.directive';
     MatDialogModule,
     NgPipesModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,7 +16,6 @@ export class AuthGuard implements CanActivate {
 
     return new Promise ((resolve, reject) => {
       this.authService.getStatus().subscribe(user => {
-        console.log("Hello")
         if (user) {
           return resolve(true);
         }
